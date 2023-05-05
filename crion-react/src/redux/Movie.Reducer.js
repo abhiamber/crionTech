@@ -28,7 +28,9 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state };
     }
     case DELETEITEM: {
-      return { ...state };
+      let filter = state.data.filter((elem) => elem.id !== payload);
+
+      return { ...state, data: filter };
     }
     case "LOGIN": {
       console.log(payload);

@@ -3,6 +3,7 @@ import style from "../styles/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 // import { GET_ITEM } from "../redux/Movie.action.type";
 import { getMovieDataFunc } from "../redux/Movie.action";
+import { DELETEITEM } from "../redux/Movie.action.type";
 let edit = {
   title: "",
   Director: "",
@@ -99,14 +100,13 @@ const Home = () => {
 
   // ***********delte item-*********************
   const deletFunctionindividual = (id) => {
-    let data = JSON.parse(localStorage.getItem("storeData")) || [];
+    // console.log(id);
+    let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
 
     let filter = data.filter((elem) => elem.id !== id);
-    // setlength(Math.ceil(filter.length / 10));
+    localStorage.setItem("MoviesData", JSON.stringify(filter));
 
-    localStorage.setItem("storeData", JSON.stringify(filter));
-
-    // console.log(id, filter);
+    dispatch({ type: DELETEITEM, payload: id });
   };
 
   useEffect(() => {
@@ -138,11 +138,12 @@ const Home = () => {
                   style={{
                     width: "30%",
                     position: "fixed",
+                    height: "auto",
                     zIndex: "1000",
                     backgroundColor: "yellow",
-                    left: "400px",
-                    top: "200px",
-                    padding: "30px",
+                    left: "31%",
+                    top: "25%",
+                    padding: " 10px 30px",
                   }}
                 >
                   <form>
