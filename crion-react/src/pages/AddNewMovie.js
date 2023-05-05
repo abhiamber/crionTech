@@ -28,7 +28,10 @@ const AddNewMovie = () => {
     if (!title || !Director || !Year || !Genre || !Image || !Rating || !Cast) {
       return alert("Please fill all the required data");
     }
+
     dispatch(addMovieDataFunc(moviedata));
+    setMovieData({ ...movieDetails });
+    alert("movie added");
   };
   return (
     <div>

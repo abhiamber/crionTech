@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "../styles/Home.module.css";
+import { useNavigate } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 // import { GET_ITEM } from "../redux/Movie.action.type";
 import { getMovieDataFunc } from "../redux/Movie.action";
@@ -19,8 +21,17 @@ const Home = () => {
   let [arr, setArr] = useState([]);
   let [editno, setEditNo] = useState(null);
   let dispatch = useDispatch();
+  let navigate = useNavigate();
   let { data } = useSelector((store) => store);
   // console.log(data);
+
+  const handleDetailsNavigate = (data) => {
+    navigate("/details", {
+      state: {
+        ...data,
+      },
+    });
+  };
 
   const handleEditbyData = (e) => {
     setEditableData({ ...editableData, [e.target.name]: e.target.value });
@@ -119,14 +130,29 @@ const Home = () => {
         {data.map((elem) => {
           return (
             <div key={elem.id}>
-              <h1>{elem.title}</h1>
-              <h1>{elem.Director}</h1>
-              <h1>{elem.Genre}</h1>
+              <img src={elem.Image} alt={elem.Image} />
+              <p>Title {elem.title}</p>
+              <p>Director {elem.Director}</p>
+              <p>Genre {elem.Genre}</p>
+              <button
+                style={{
+                  backgroundColor: "blue",
+                  borderRadius: "2px",
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleDetailsNavigate(elem)}
+              >
+                View Details
+              </button>
+              <br />
+              <br />
               <button
                 style={{
                   backgroundColor: "green",
                   borderRadius: "5px",
                   padding: "5px",
+                  cursor: "pointer",
                 }}
                 onClick={() => setEditNo(elem.id)}
               >
@@ -173,6 +199,7 @@ const Home = () => {
                   backgroundColor: "red",
                   borderRadius: "5px",
                   padding: "5px",
+                  cursor: "pointer",
                 }}
                 onClick={() => deletFunctionindividual(elem.id)}
               >

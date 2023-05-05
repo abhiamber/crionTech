@@ -5,6 +5,7 @@ import AddNewMovie from "./pages/AddNewMovie";
 import EditMovie from "./pages/EditMovie";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import MovieDetails from "./component/MovieDetails";
 
 const AllRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AllRoutes = () => {
         <Route path="/crud" element={<EditMovie />} />
         <Route path="/Login" element={<Login />} />{" "}
         <Route path="/Singup" element={<SignUp />} />
+        <Route path="/details" element={<MovieDetails />} />
       </Routes>
     </div>
   );
