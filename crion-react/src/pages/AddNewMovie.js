@@ -4,7 +4,6 @@ import style from "../styles/AddNew.module.css";
 const AddNewMovie = () => {
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>AddNewMovie</h2>
       <div className={style.forms}>
         <form>
           <p>Title</p>

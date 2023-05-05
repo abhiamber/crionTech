@@ -3,6 +3,7 @@ const initialState = {
   data: [],
   error: false,
   Loading: true,
+  auth: localStorage.getItem("token") || null,
 };
 
 export const movieReducer = (state = initialState, { type, payload }) => {
