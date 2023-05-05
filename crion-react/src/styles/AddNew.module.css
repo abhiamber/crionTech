@@ -1,0 +1,53 @@
+.forms {
+  width: 35%;
+  margin: auto;
+  text-align: center;
+}
+.forms p {
+  margin-bottom: 0px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.forms input {
+  width: 100%;
+  padding: 5px;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.forms button {
+  width: 100%;
+  padding: 5px;
+  margin-right: -10px;
+
+  margin-top: 10px;
+  font-weight: 700;
+  cursor: pointer;
+
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  margin-bottom: 3.8rem;
+}
+.forms button:hover {
+  background-color: teal;
+}
+
+@media (min-width: 20px) and (max-width: 480px) {
+  .forms {
+    width: 80%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1050px) {
+  .forms {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+  }
+}
