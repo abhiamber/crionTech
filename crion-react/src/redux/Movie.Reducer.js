@@ -25,7 +25,7 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state };
     }
     case UPDATE_ITEM: {
-      return { ...state };
+      return { ...state, data: payload };
     }
     case DELETEITEM: {
       let filter = state.data.filter((elem) => elem.id !== payload);

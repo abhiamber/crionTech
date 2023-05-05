@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 // import { GET_ITEM } from "../redux/Movie.action.type";
-import { getMovieDataFunc } from "../redux/Movie.action";
+import { getMovieDataFunc, handleUdateFunction } from "../redux/Movie.action";
 import { DELETEITEM } from "../redux/Movie.action.type";
 let edit = {
   title: "",
@@ -38,75 +38,8 @@ const Home = () => {
   };
 
   const hanldeEditFuncSubmit = (id) => {
-    console.log(id, editableData);
-    if (editableData.name && editableData.role && editableData.email) {
-      let data = JSON.parse(localStorage.getItem("storeData")) || [];
-
-      let filter = data.map((elem) => {
-        if (elem.id === id) {
-          return editableData;
-        } else {
-          return elem;
-        }
-      });
-      // setMainData(filter.slice(page * 10, 10));
-      // setlength(Math.ceil(filter.length / 10));
-
-      localStorage.setItem("storeData", JSON.stringify(filter));
-    } else if (editableData.name && editableData.role) {
-      let data = JSON.parse(localStorage.getItem("storeData")) || [];
-
-      let filter = data.map((elem) => {
-        if (elem.id === id) {
-          return { ...elem, name: editableData.name, role: editableData.role };
-        } else {
-          return elem;
-        }
-      });
-      // setMainData(filter.slice(page * 10, 10));
-      // setlength(Math.ceil(filter.length / 10));
-
-      localStorage.setItem("storeData", JSON.stringify(filter));
-    } else if (editableData.name && editableData.email) {
-      let data = JSON.parse(localStorage.getItem("storeData")) || [];
-
-      let filter = data.map((elem) => {
-        if (elem.id === id) {
-          return {
-            ...elem,
-            name: editableData.name,
-            email: editableData.email,
-          };
-        } else {
-          return elem;
-        }
-      });
-      // setMainData(filter.slice(page * 10, 10));
-      setlength(Math.ceil(filter.length / 10));
-
-      localStorage.setItem("storeData", JSON.stringify(filter));
-    } else if (editableData.role && editableData.email) {
-      let data = JSON.parse(localStorage.getItem("storeData")) || [];
-
-      let filter = data.map((elem) => {
-        if (elem.id === id) {
-          return {
-            ...elem,
-            role: editableData.role,
-            email: editableData.email,
-          };
-        } else {
-          return elem;
-        }
-      });
-      // setMainData(filter.slice(page * 10, 10));
-      setlength(Math.ceil(filter.length / 10));
-
-      localStorage.setItem("storeData", JSON.stringify(filter));
-    }
-
-    setEditableData(edit);
-    setEditNo(null);
+    // console.log(id, editableData);
+    dispatch(handleUdateFunction({ editableData, id }));
   };
 
   // ***********delte item-*********************
@@ -180,12 +113,15 @@ const Home = () => {
                     <input name="Director" onChange={handleEditbyData} /> <br />
                     <p>Genre</p>
                     <input name="Genre" onChange={handleEditbyData} />
-                    <br />
-                    <button onClick={() => hanldeEditFuncSubmit(elem.id)}>
-                      Submit
-                    </button>
-                    <br />
                   </form>
+                  <button
+                    onClick={() => {
+                      hanldeEditFuncSubmit(elem.id);
+                      setEditNo(null);
+                    }}
+                  >
+                    Submit
+                  </button>
                   <button
                     style={{ marginTop: "-100px", width: "50%" }}
                     onClick={() => setEditNo(null)}

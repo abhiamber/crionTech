@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEM } from "./Movie.action.type";
+import { ADD_ITEM, GET_ITEM, UPDATE_ITEM } from "./Movie.action.type";
 import { API } from "../API";
 
 export const addMovieDataFunc = (data) => async (dispatch) => {
@@ -39,5 +39,121 @@ export const getMovieDataFunc = () => async (dispatch) => {
   dispatch({ type: GET_ITEM, payload: allMovieData });
 };
 
+export const handleUdateFunction =
+  ({ editableData, id }) =>
+  (dispatch) => {
+    if (editableData.title && editableData.Director && editableData.Genre) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
 
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            title: editableData.title,
+            Director: editableData.Director,
+            Genre: editableData.Genre,
+          };
+        } else {
+          return elem;
+        }
+      });
 
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.title && editableData.Director) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            title: editableData.title,
+            Director: editableData.Director,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.Director && editableData.Genre) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            title: editableData.Genre,
+            Director: editableData.Director,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.Genre && editableData.title) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            Genre: editableData.Genre,
+            title: editableData.title,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.title) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            title: editableData.title,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.Director) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            Director: editableData.Director,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    } else if (editableData.Genre) {
+      let data = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+      let filter = data.map((elem) => {
+        if (elem.id === id) {
+          return {
+            ...elem,
+            Genre: editableData.Genre,
+          };
+        } else {
+          return elem;
+        }
+      });
+
+      localStorage.setItem("MoviesData", JSON.stringify(filter));
+    }
+    let datas = JSON.parse(localStorage.getItem("MoviesData")) || [];
+
+    dispatch({ type: UPDATE_ITEM, payload: datas });
+  };
