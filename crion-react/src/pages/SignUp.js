@@ -20,14 +20,15 @@ const SignUp = () => {
 
   let handleSingUp = async () => {
     let { email, password, confirm } = user;
+    user.id = Date.now();
 
     if (!email && !password && !confirm) {
       return alert("plz fill all the required details");
     } else if (password !== confirm) {
       return alert("plz type correct password");
     }
-
-    let res = await fetch(`${API}/user/signin`, {
+    console.log(user);
+    let res = await fetch(`${API}/users`, {
       method: "POST",
       body: JSON.stringify(user),
       headers: {
@@ -37,15 +38,17 @@ const SignUp = () => {
 
     try {
       let data = await res.json();
-      if (data.status === "OK") {
-        setUser(crediantils);
-        navigate("/");
-      } else {
-        return alert("something weent wrong try again");
-      }
+      console.log(data);
+      alert("singup sucessfull");
+
+      // if (data.status === "OK") {
+      navigate("/Login");
+      // } else {
+      //   return alert("something went wrong try again");
+      // }
     } catch (e) {
       console.log(e);
-      return alert("something weent wrong try again");
+      return alert("something went wrong try again");
     }
   };
 

@@ -8,3 +8,82 @@
 .home {
   text-align: center;
 }
+
+.movieList {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: "space-around";
+  padding: 5px;
+  gap: 20px;
+}
+.movieList div {
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.forms p {
+  margin-bottom: 0px;
+  font-weight: 700;
+  text-align: left;
+}
+.inputs {
+  background-color: "orange";
+  margin-top: -0px;
+  color: "black";
+  margin: "5px";
+}
+.forms {
+  width: 35%;
+  margin: auto;
+  text-align: center;
+}
+.forms input {
+  width: 100%;
+  padding: 5px;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.forms button {
+  width: 100%;
+  padding: 5px;
+  margin-right: -10px;
+
+  margin-top: 10px;
+  font-weight: 700;
+  cursor: pointer;
+
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  margin-bottom: 3.8rem;
+}
+.forms button:hover {
+  background-color: teal;
+}
+@media (min-width: 20px) and (max-width: 480px) {
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: "space-around";
+    padding: 5px;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1050px) {
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: "space-around";
+    padding: 5px;
+    gap: 20px;
+  }
+}

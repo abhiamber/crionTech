@@ -5,7 +5,7 @@ import style from "../styles/AddNew.module.css";
 import { API } from "../API";
 import { useDispatch } from "react-redux";
 // import { getToken } from "../Redux/action";
-let getToken;
+// let getToken;
 let crediantils = {
   email: "",
   password: "",
@@ -26,26 +26,21 @@ const Login = () => {
     if (!email && !password) {
       return alert("plz fill all the required details");
     }
-    console.log(user);
+    // console.log(user);
 
-    let res = await fetch(`${API}/user/login`, {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let res = await fetch(`${API}/users/?email=${email}`);
 
     try {
       let data = await res.json();
-      console.log(data);
-      if (data.status === "OK") {
-        localStorage.setItem("token", data.message);
-        dispatch(getToken());
+      // console.log(data);
+      if (data[0].password === password) {
+        dispatch({ type: "LOGIN", payload: data[0].email });
 
-        dispatch({ type: "LOGIN", payload: data.message });
+        localStorage.setItem("token", JSON.stringify(data[0].email));
+        // dispatch(getToken());
+
         setUser(crediantils);
-        navigate("/home");
+        navigate("/");
       } else {
         return alert("something weent wrong try again");
       }
@@ -70,7 +65,7 @@ const Login = () => {
       <div className={style.forms}>
         <p>email</p>
         <input
-          name="userName"
+          name="email"
           tyep="text"
           value={user.userName}
           onChange={handleChange}
