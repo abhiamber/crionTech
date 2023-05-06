@@ -157,3 +157,80 @@ export const handleUdateFunction =
 
     dispatch({ type: UPDATE_ITEM, payload: datas });
   };
+
+export const sortFunc =
+  ({ types, val, data }) =>
+  (dispatch) => {
+    if (types === 1) {
+      if (val === "ASC") {
+        // console.log(types, val, data);
+        let filterData = data.sort((a, b) =>
+          a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+        // let filterData = data.sort((a, b) => a.title - b.title);
+        // console.log("filter", filterData);
+
+        dispatch({ type: "SORT", payload: filterData });
+      } else {
+        // let filterData = data.sort((a, b) => b.title - a.title);
+        let filterData = data.sort((b, a) =>
+          a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+
+        dispatch({ type: "SORT", payload: filterData });
+      }
+    } else if (types === 2) {
+      console.log(types, val, data);
+
+      if (val === "ASC") {
+        // let filterData = data.sort((a, b) => a.Director - b.Director);
+        let filterData = data.sort((a, b) =>
+          a.Director > b.Director ? 1 : b.Director > a.Director ? -1 : 0
+        );
+        dispatch({ type: "SORT", payload: filterData });
+      } else {
+        // let filterData = data.sort((a, b) => b.Director - a.Director);
+        let filterData = data.sort((b, a) =>
+          a.Director > b.Director ? 1 : b.Director > a.Director ? -1 : 0
+        );
+        dispatch({ type: "SORT", payload: filterData });
+      }
+    } else if (types === 3) {
+      // console.log(types, val, data);
+
+      if (val === "ASC") {
+        // let filterData = data.sort((a, b) => a.Genre - b.Genre);
+        let filterData = data.sort((a, b) =>
+          a.Genre > b.Genre ? 1 : b.Genre > a.Genre ? -1 : 0
+        );
+        dispatch({ type: "SORT", payload: filterData });
+      } else {
+        // let filterData = data.sort((b, a) => b.Genre - a.Genre);
+        let filterData = data.sort((b, a) =>
+          a.Genre > b.Genre ? 1 : b.Genre > a.Genre ? -1 : 0
+        );
+        dispatch({ type: "SORT", payload: filterData });
+      }
+    } else if (types === 4) {
+      // console.log(types, val, data);
+
+      if (val === "ASC") {
+        // let filterData = data.sort((a, b) => a.Year - b.Year);
+        // console.log(data)
+        let filterData = data.sort((a, b) =>
+          a.Year > b.Year ? 1 : b.Year > a.Year ? -1 : 0
+        );
+        // console.log(filterData);
+
+        dispatch({ type: "SORT", payload: filterData });
+      } else {
+        // let filterData = data.sort((a, b) => b.Year - a.Year);
+        let filterData = data.sort((b, a) =>
+          a.Year > b.Year ? 1 : b.Year > a.Year ? -1 : 0
+        );
+        // console.log(filterData[0].Year);
+
+        dispatch({ type: "SORT", payload: filterData });
+      }
+    }
+  };

@@ -7,15 +7,29 @@
 }
 .home {
   text-align: center;
+  /* margin: ; */
 }
 
-.movieList {
+.movieList,
+.filters {
   margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: "space-around";
   padding: 5px;
   gap: 20px;
+}
+.filterDiv select,
+.filterDiv button {
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 20px;
+  -o-border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
 }
 .movieList div {
   width: 90%;
@@ -73,7 +87,8 @@
   background-color: teal;
 }
 @media (min-width: 20px) and (max-width: 480px) {
-  .movieList {
+  .movieList,
+  .filters {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     justify-content: "space-around";
@@ -83,7 +98,8 @@
 }
 
 @media (min-width: 480px) and (max-width: 1050px) {
-  .movieList {
+  .movieList,
+  .filters {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: "space-around";

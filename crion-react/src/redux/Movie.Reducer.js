@@ -42,6 +42,13 @@ export const movieReducer = (state = initialState, { type, payload }) => {
     case GET_ITEM: {
       return { ...state, data: payload };
     }
+
+    case "SEARCH": {
+      return { ...state, data: payload };
+    }
+    case "SORT": {
+      return { ...state, data: payload };
+    }
     default: {
       return state;
     }

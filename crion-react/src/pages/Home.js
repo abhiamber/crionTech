@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { GET_ITEM } from "../redux/Movie.action.type";
 import { getMovieDataFunc, handleUdateFunction } from "../redux/Movie.action";
 import { DELETEITEM } from "../redux/Movie.action.type";
+import FilterMovie from "./FilterMovie";
 let edit = {
   title: "",
   Director: "",
@@ -14,11 +15,7 @@ let edit = {
 
 const Home = () => {
   let [editableData, setEditableData] = useState(edit);
-  let [mainData, setMainData] = useState([]);
-  let [search, setSearch] = useState("");
-  let [length, setlength] = useState(0);
-  let [selectItem, setSelect] = useState([]);
-  let [arr, setArr] = useState([]);
+
   let [editno, setEditNo] = useState(null);
   let dispatch = useDispatch();
   let navigate = useNavigate();
@@ -59,6 +56,10 @@ const Home = () => {
   }, []);
   return (
     <div className={style.home}>
+      <div style={{ margin: "30px" }}>
+        <FilterMovie />
+      </div>
+
       <div className={style.movieList}>
         {data.map((elem) => {
           return (
@@ -67,6 +68,8 @@ const Home = () => {
               <p>Title {elem.title}</p>
               <p>Director {elem.Director}</p>
               <p>Genre {elem.Genre}</p>
+              <p>Year {elem.Year}</p>
+
               <button
                 style={{
                   backgroundColor: "blue",
